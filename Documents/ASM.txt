@@ -1,0 +1,29 @@
+<optCode> : <NAME> : <PARAMS> : Description
+
+<reg> : Describes a cpu register
+<mem> : An address in memory
+<type> : Is the type a PTR or a VAL
+<const> : a constant number.
+
+
+
+0   : nop    :       : No operation.
+1   : jmp    : <mem> : jumps to given <mem>.
+11  : add    : <reg>, <reg> : Adds the values of ra and rb.
+27  : sub    : <reg>, <reg> : Subs the values of ra and rb.
+43  : mul    : <reg>, <reg> : multiplies the values of ra and rb.
+117 : cmprtr : <reg1>, <reg2> : Compares <reg1> with <reg2> and stores the results in compareFlags.
+118 : cmprtm : <reg>, <type>, <mem> : Compares <reg> with <mem> and stores the results in compareFlags. Type is used with the fetch.
+118 : cmprtc : <reg>, <const> : Compares <reg> with <const> and stores the results in compareFlags.
+
+133 : movrtr : <reg1>, <reg2> : Copys the data from <reg1> to <reg2>.
+134 : movrtm : <reg>, <mem> : Copys the data from <reg> to memory address in <mem>.
+135 : movmtr : <mem>, <type>, <reg> : If <type> is VAL then the data at address of <mem> is copied to <reg>. If type is PTR the address is copied to <reg>.
+136 : movctr : <reg>, <const> : Copys a constant number into <reg>
+137 : movctm : <mem>, <const> : Copys a constant number into <mem>
+
+149 : pshreg : <reg> : Copys whats in the given reg to the stack.
+150 : pshmem : <type>, <mem> : Copys the memory of a given type to the stack.
+151 : popstk :       : Removes the last thing added to the stack.
+
+255 : hlt : : Stops the cpu and makes it return.

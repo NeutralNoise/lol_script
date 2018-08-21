@@ -1,0 +1,17 @@
+HEX,0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F
+0,nop,jmp,jne,nop,nop,nop,nop,nop,nop,nop,nop,add,nop,nop,nop,nop
+1,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,sub,nop,nop,nop,nop
+2,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,mul,nop,nop,nop,nop
+3,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+4,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+5,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+6,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+7,nop,nop,nop,nop,nop,cmprtr,cmprtm,cmprtc,nop,nop,nop,nop,nop,nop,nop,nop
+8,nop,nop,nop,nop,nop,movrtr,movrtm,movmtr,movctr,movctm,movrts,movstr,nop,nop,nop,nop
+9,nop,nop,nop,nop,nop,pshreg,pshmem,popstk,nop,nop,nop,nop,nop,nop,nop,nop
+A,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+B,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+C,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+D,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+E,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop
+F,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,hlt

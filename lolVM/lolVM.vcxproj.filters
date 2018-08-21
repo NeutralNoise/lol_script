@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\fetch">
+      <UniqueIdentifier>{7352230c-6fea-433c-b5fc-162e816098f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fetch">
+      <UniqueIdentifier>{30f60e9b-fa6d-47fd-9284-59be500c4d03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tests">
+      <UniqueIdentifier>{2d3eba08-aac2-4603-a2cd-bc541885f5b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tests">
+      <UniqueIdentifier>{a8189b85-1a46-4517-b619-28228a9620f1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="optCodes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fetch\fetch.cpp">
+      <Filter>Source Files\fetch</Filter>
+    </ClCompile>
+    <ClCompile Include="fetch\fetch_mov.cpp">
+      <Filter>Source Files\fetch</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\CpuTest.cpp">
+      <Filter>Source Files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="fetch\fetch_math.cpp">
+      <Filter>Source Files\fetch</Filter>
+    </ClCompile>
+    <ClCompile Include="fetch\fetch_jmp.cpp">
+      <Filter>Source Files\fetch</Filter>
+    </ClCompile>
+    <ClCompile Include="fetch\fetch_cmp.cpp">
+      <Filter>Source Files\fetch</Filter>
+    </ClCompile>
+    <ClCompile Include="fetch\fetch_stack.cpp">
+      <Filter>Source Files\fetch</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cpu_core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="type_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="optCodes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cpuEnums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fetch\fetch.h">
+      <Filter>Header Files\fetch</Filter>
+    </ClInclude>
+    <ClInclude Include="fetch\fetch_mov.h">
+      <Filter>Header Files\fetch</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\CpuTest.h">
+      <Filter>Header Files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fetch\fetch_math.h">
+      <Filter>Header Files\fetch</Filter>
+    </ClInclude>
+    <ClInclude Include="fetch\fetch_jmp.h">
+      <Filter>Header Files\fetch</Filter>
+    </ClInclude>
+    <ClInclude Include="fetch\fetch_includes.h">
+      <Filter>Header Files\fetch</Filter>
+    </ClInclude>
+    <ClInclude Include="fetch\fetch_cmp.h">
+      <Filter>Header Files\fetch</Filter>
+    </ClInclude>
+    <ClInclude Include="CounterJumpSize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fetch\fetch_stack.h">
+      <Filter>Header Files\fetch</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
