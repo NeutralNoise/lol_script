@@ -4,14 +4,15 @@
 #include <regex>
 
 enum TokenType {
+	KEYWORD,	// void int float
 	IDENTIFIER, // _testFunc();
 	INTEGER_LITERAL, // 1231
 	STRING_LITERAL, // " * "
 	CHAR_LITERAL,  // 'd'
-	LEFT_BRACET,
-	RIGHT_BRACET,
-	LEFT_CURLY_BRACET,
-	RIGHT_CURLY_BRACET,
+	LEFT_BRACET, // (
+	RIGHT_BRACET, // )
+	LEFT_CURLY_BRACET, // {
+	RIGHT_CURLY_BRACET, // }
 	LEFT_BRACE, // [
 	RIGHT_BRACE, // ]
 	SEMI_COLON,

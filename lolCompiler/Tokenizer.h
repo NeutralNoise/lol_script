@@ -39,23 +39,7 @@ public:
 		}
 
 		str->erase(str->begin(), str->begin() + rtn.token.size());
-		/*
-		size_t spacepos = str->find_first_of(" ");
 
-		if (spacepos == std::string::npos) {
-			str->erase(str->begin(), str->begin() + rtn.token.size());
-		}
-		else {
-			//Make sure there is a space after last token.
-			//If not then only remove up untill the next token.
-			if (spacepos > (rtn.token.size() + 1)) {
-				str->erase(str->begin(), str->begin() + rtn.token.size());
-			}
-			else {
-				str->erase(str->begin(), str->begin() + rtn.token.size() + 1);
-			}
-		}
-		*/
 		rtn.line = line;
 		rtn.linePos = pos;
 

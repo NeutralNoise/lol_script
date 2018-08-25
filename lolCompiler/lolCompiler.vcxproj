@@ -77,9 +77,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parsers.cpp" />
+    <ClCompile Include="ParseTokens.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AST.h" />
+    <ClInclude Include="ASTNode.h" />
+    <ClInclude Include="Parsers.h" />
+    <ClInclude Include="ParseTokens.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="Tokenizer.h" />
   </ItemGroup>

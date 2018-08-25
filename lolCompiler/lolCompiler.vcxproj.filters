@@ -21,12 +21,30 @@
     <ClCompile Include="Tokenizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ParseTokens.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Parsers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tokenizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseTokens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AST.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Parsers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ASTNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -29,20 +29,47 @@ void ParseTokens::Parse(const std::vector<Token> &tokens, AST * ast) {
 void ParseTokens::Parse(const std::vector<Token> &tokens, ASTNode * perent) {
 	//This is where we parse the different blocks into the ast
 	if (tokens[m_tokPos].GetType() == TokenType::KEYWORD) {
-
+		//Make sure we are pointing to the right part of the tokens.
+		std::vector<Token> tok = tokens;
+		tok.erase(tok.begin(), tok.begin() + m_tokPos);
 		//TODO check for verible decl
 		//TODO check for keywords like return and sizeof
 
+		if (ParseVarible(&tok, perent)) {
+			if (tok.size() < tokens.size()) {
+				size_t dif = tokens.size() - tok.size();
+				std::vector<Token> tmpTok = tokens;
+				tmpTok.erase(tmpTok.begin(), tmpTok.begin() + m_tokPos);
+				size_t dif2 = tokens.size() - tmpTok.size();
+				if (dif != dif2) {
+					m_tokPos += dif;
+				}
+			}
+			return;
+		}
+
+		//Check if return statement.
+		if (ParseReturn(&tok, perent)) {
+			if (tok.size() < tokens.size()) {
+				size_t dif = tokens.size() - tok.size();
+				std::vector<Token> tmpTok = tokens;
+				tmpTok.erase(tmpTok.begin(), tmpTok.begin() + m_tokPos);
+				size_t dif2 = tokens.size() - tmpTok.size();
+				if (dif != dif2) {
+					m_tokPos += dif;
+				}
+			}
+			return;
+		}
+		
 		//Check if we are a function
-		std::vector<Token> tok = tokens;
-		tok.erase(tok.begin(), tok.begin() + m_tokPos);
 		if (ParseFuntions(&tok, perent)) {
 			//Get the difference.
 			if (tok.size() < tokens.size()) {
 				size_t dif = tokens.size() - tok.size();
 				std::vector<Token> tmpTok = tokens;
 				tmpTok.erase(tmpTok.begin(), tmpTok.begin() + m_tokPos);
-				size_t dif2 = tmpTok.size();
+				size_t dif2 = tokens.size() - tmpTok.size();
 				if (dif != dif2) {
 					m_tokPos += dif;
 				}
@@ -50,5 +77,14 @@ void ParseTokens::Parse(const std::vector<Token> &tokens, ASTNode * perent) {
 			return;
 		}
 	}
+	else if (tokens[m_tokPos].GetType() == TokenType::LEFT_CURLY_BRACET) {
+		// skip the curly (ew).
+		m_tokPos++;
+		SkipWhiteSpace(&m_tokPos, tokens);
+		//pares a block.
+		Parse(tokens, perent);
+		return;
+	}
+
 
 }

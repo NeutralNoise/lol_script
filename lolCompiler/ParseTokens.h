@@ -15,7 +15,7 @@ public:
 	void Parse(const std::vector<Token> &tokens, AST * ast);
 	void Parse(const std::vector<Token> &tokens, ASTNode * perent);
 
-private:
+//private:
 	unsigned int m_tokPos;
 };
 
