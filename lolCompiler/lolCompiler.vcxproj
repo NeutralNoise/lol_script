@@ -82,6 +82,8 @@
     <ClCompile Include="Tokenizer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\cpuEnums.h" />
+    <ClInclude Include="..\Common\optCodes.h" />
     <ClInclude Include="AST.h" />
     <ClInclude Include="ASTNode.h" />
     <ClInclude Include="Parsers.h" />

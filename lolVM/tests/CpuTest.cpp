@@ -2,9 +2,9 @@
 #include <assert.h>
 #include <chrono>
 #include <iostream>
-#include "../cpuEnums.h"
+#include "../../Common/cpuEnums.h"
 #include "../defines.h"
-#include "../optCodes.h"
+#include "../../Common/optCodes.h"
 #include "../fetch/fetch.h"
 
 void TestSpacer() {

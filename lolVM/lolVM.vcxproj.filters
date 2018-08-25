@@ -62,12 +62,6 @@
     <ClInclude Include="type_def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="optCodes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cpuEnums.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="fetch\fetch.h">
       <Filter>Header Files\fetch</Filter>
     </ClInclude>
@@ -97,6 +91,12 @@
     </ClInclude>
     <ClInclude Include="fetch\fetch_stack.h">
       <Filter>Header Files\fetch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\cpuEnums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\optCodes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
-#include "optCodes.h"
-#include "cpuEnums.h"
+#include "../Common/optCodes.h"
+#include "../Common/cpuEnums.h"
 #include "cpu_core.h"
 #include "CounterJumpSize.h"
 

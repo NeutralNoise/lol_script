@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "type_def.h"
-#include "optCodes.h"
+#include "../Common/optCodes.h"
 
 
 struct optInstr

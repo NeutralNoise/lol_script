@@ -1,5 +1,5 @@
 #include "fetch.h"
-#include "../cpuEnums.h"
+#include "../../Common/cpuEnums.h"
 #include "fetch_includes.h"
 
 void fetch(cpu * c) {

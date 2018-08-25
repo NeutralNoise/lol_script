@@ -93,11 +93,13 @@ int main(int argc, char** argv) {
 		//WriteByte(ofile, 't');
 
 		unsigned char writeTest[12] = { 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '\n' };
-		//unsigned char writeTest[3] = { 'H', 'e', '\n' };
 
 		WriteBytes(ofile, &writeTest[0], sizeof("Hello World\n") - 1);
-		//WriteBytes(ofile, &writeTest[0], sizeof("He\n") - 1);
 	}
+
+
+
+
 	//Convert ast to binary
 
 	std::cin.get();

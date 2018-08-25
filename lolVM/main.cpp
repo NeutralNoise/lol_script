@@ -1,7 +1,7 @@
 #include <iostream>
 #include "cpu_core.h"
 #include "fetch/fetch.h"
-#include "optCodes.h"
+#include "../Common/optCodes.h"
 #include "defines.h"
 #include "tests/CpuTest.h"
 #include <assert.h>

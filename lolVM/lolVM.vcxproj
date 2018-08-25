@@ -97,8 +97,9 @@
     <ClCompile Include="tests\CpuTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\cpuEnums.h" />
+    <ClInclude Include="..\Common\optCodes.h" />
     <ClInclude Include="CounterJumpSize.h" />
-    <ClInclude Include="cpuEnums.h" />
     <ClInclude Include="cpu_core.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="fetch\fetch.h" />
@@ -108,7 +109,6 @@
     <ClInclude Include="fetch\fetch_math.h" />
     <ClInclude Include="fetch\fetch_mov.h" />
     <ClInclude Include="fetch\fetch_stack.h" />
-    <ClInclude Include="optCodes.h" />
     <ClInclude Include="tests\CpuTest.h" />
     <ClInclude Include="type_def.h" />
   </ItemGroup>
