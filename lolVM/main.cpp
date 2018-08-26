@@ -4,7 +4,25 @@
 #include "../Common/optCodes.h"
 #include "defines.h"
 #include "tests/CpuTest.h"
+#include <fstream>
 #include <assert.h>
+
+
+
+void ReadByte(std::ifstream &stream, unsigned char *byte) {
+	stream >> *byte;
+}
+
+void ReadBytes(std::ifstream &stream, unsigned char *byte, const size_t &size) {
+	char *c = new char[size]();
+	memset(c, '\0', size);
+	stream.read(c, size);
+	for (size_t i = 0; i < size; i++) {
+		*(byte + i) = (unsigned char)*(c + i);
+	}
+
+}
+
 
 int main(int argc, char ** argv) {
 
@@ -21,6 +39,16 @@ int main(int argc, char ** argv) {
 	testCPU.RunTests();
 #else
 	cpu c(MB(1), MB(1));
+
+	std::ifstream file("../Documents/Examples/test1.lolc");
+
+	if (file.is_open()) {
+		ReadBytes(file, (unsigned char*)&c.pc, sizeof(unsigned int));
+		
+		for (size_t i = c.pc; !file.eof(); i++) {
+			ReadByte(file, (unsigned char*)(c.memory + i));
+		}
+	}
 	while (c.running)
 	{
 		fetch(&c);
@@ -29,7 +57,7 @@ int main(int argc, char ** argv) {
 		c.pc += offset_table[c.instruction.opCode];
 
 	}
-
+	c.PrintState();
 	c.free();
 #endif
 	std::cin.get();
