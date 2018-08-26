@@ -16,7 +16,7 @@ change over time.
 
 ## Todo
 
-1. Write the rest of the compiler. :P
+1. Write the rest of the compiler. (Started) Compiles test1.lol in "Documents/Examples"
 2. Add some more OP codes. i.e. shifting left.
 3. Add lua scripting.
 4. Documentation of the VM and compiler design.
