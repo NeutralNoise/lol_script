@@ -54,6 +54,10 @@ public:
 		}
 	}
 
+	void SetFilePosition(const unsigned int &pos) { m_filePosition = pos; }
+
+	const unsigned int &GetFilePosition() { return m_filePosition; }
+
 #ifdef PRINT_NODES 
 	void PrintNodes() {
 		for (size_t i = 0; i < m_nodes.size(); i++) {
@@ -71,6 +75,7 @@ private:
 	std::string m_literal;
 	std::vector<ASTNode*> m_nodes;
 	int m_type;
+	unsigned int m_filePosition;
 };
 
 #endif //AST_NODE_H

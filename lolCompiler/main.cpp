@@ -8,27 +8,6 @@
 #include "AST.h"
 
 
-void WriteByte(std::ofstream &stream, unsigned char byte) {
-	stream << byte;
-}
-
-void WriteBytes(std::ofstream &stream, unsigned char *byte, const size_t &size) {
-	for (size_t i = 0; i < size; i++) {
-		stream << *(byte + i);
-	}
-}
-
-void ReadByte(std::ifstream &stream, unsigned char *byte) {
-	stream >> *byte;
-}
-
-void ReadBytes(std::ifstream &stream, unsigned char *byte, const size_t &size) {
-	for (size_t i = 0; i < size; i++) {
-		stream >> *(byte + i);
-	}
-}
-
-
 //Check for key words
 //TODO find a better place for this :D
 void CheckTokenKeywords(const std::vector<std::string> &key, std::vector<Token> *toks) {
@@ -88,7 +67,7 @@ int main(int argc, char** argv) {
 	root->PrintNodes();
 
 	std::ofstream ofile("../Documents/Examples/test1.lolc");
-
+	/*
 	if (ofile.is_open()) {
 		//WriteByte(ofile, 't');
 
@@ -96,8 +75,8 @@ int main(int argc, char** argv) {
 
 		WriteBytes(ofile, &writeTest[0], sizeof("Hello World\n") - 1);
 	}
-
-
+	*/
+	ast.WriteAST(ofile);
 
 
 	//Convert ast to binary

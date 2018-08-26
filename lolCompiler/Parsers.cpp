@@ -51,15 +51,30 @@ bool ParseFuntions(std::vector<Token> * toks, ASTNode * ast) {
 		//check if we should parse this as a function.
 		if (ShouldParseFunc(*toks)) {
 			ASTNode * newNode = new ASTNode;
+			ASTNode * funcIndentNode = new ASTNode;
 			newNode->SetType(ASTNodeType::AST_Function_Declaration);
-			
+			funcIndentNode->SetType(ASTNodeType::AST_Function_Identifier);
+			newNode->AddNode(funcIndentNode);
+
+
+
 
 			for (size_t i = 0; i < toks->size(); i++) {
 				if (toks->operator[](i).GetType() == TokenType::KEYWORD) {
 					//We will only store the start token.
 					//TODO Nodes can have more then one token pls
 					newNode->SetToken(toks->operator[](i));
-					std::string lit = toks->operator[](i).GetToken();
+					std::string lit;
+
+					for (size_t t = i + 1; toks->operator[](t).GetType() != TokenType::LEFT_BRACET; t++) {
+						SkipWhiteSpace(&t, *toks);
+						lit += toks->operator[](t).GetToken();
+						
+					}
+					funcIndentNode->SetLiteral(lit);
+
+					lit = toks->operator[](i).GetToken();
+
 					for (size_t t = i + 1; toks->operator[](i).GetType() != TokenType::RIGHT_BRACET; t++) {
 						lit += toks->operator[](t).GetToken();
 						i = t;
@@ -69,7 +84,7 @@ bool ParseFuntions(std::vector<Token> * toks, ASTNode * ast) {
 					newNode->SetLiteral(lit);
 					ASTNode * block = new ASTNode;
 					block->SetType(ASTNodeType::AST_Block_Statement);
-					newNode->AddNode(block);
+					funcIndentNode->AddNode(block);
 					//TODO nested blocks pls.
 					i++;
 					SkipWhiteSpace(&i, *toks);
