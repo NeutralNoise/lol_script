@@ -41,7 +41,22 @@ int main(int argc, char ** argv) {
 	cpu c(MB(1), MB(1));
 
 	//TODO This doesn't work on linux
-	std::ifstream file("../Documents/Examples/test1.lolc", std::ios::binary | std::ios::in);
+	//TODO Clean this shit up
+	//../../Documents/Examples/test1.lolc
+	std::ifstream file;
+	#if defined(_WIN32) || defined(__CYGWIN__)
+		#ifdef __CYGWIN__
+			std::cout << "../../Documents/Examples/test1.lolc\n";
+			file.open("../../Documents/Examples/test1.lolc", std::ios::binary | std::ios::in);
+		#else
+			std::cout << "../Documents/Examples/test1.lolc\n";
+			file.open("../Documents/Examples/test1.lolc", std::ios::binary | std::ios::in);
+		#endif
+	#elif __linux__
+		std::cout << "../../Documents/Examples/test1.lolc\n";
+		file.open("../../Documents/Examples/test1.lolc", std::ios::binary | std::ios::in);
+	#endif
+
 	std::cout << "Opening binary file!\n";
 	if (file.is_open()) {
 		ReadBytes(file, (unsigned char*)&c.pc, sizeof(unsigned int));
@@ -53,6 +68,7 @@ int main(int argc, char ** argv) {
 	else {
 		std::cout << "Failed opening binary file!\n";
 	}
+
 	while (c.running)
 	{
 		fetch(&c);
@@ -65,6 +81,5 @@ int main(int argc, char ** argv) {
 	c.free();
 #endif
 	std::cin.get();
-
 	return 0;
 }
