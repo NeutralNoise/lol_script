@@ -22,14 +22,14 @@ void CheckTokenKeywords(const std::vector<std::string> &key, std::vector<Token> 
 }
 
 int main(int argc, char** argv) {
-	
+
 	Tokenizer tokens;
 	ParseTokens parser;
 	AST ast;
 
 	std::ifstream file("../Documents/Examples/test1.lol");
 	std::vector<std::string> test;
-
+	std::cout << "Loading File!\n";
 	if (file.is_open()) {
 		std::string tmpLine;
 		while (std::getline(file, tmpLine)) {
@@ -37,6 +37,7 @@ int main(int argc, char** argv) {
 		}
 	}
 
+std::cout << "Generating Tokens!\n";
 	int current_pos = 0;
 	int current_size = test.size();
 	std::vector<Token> tokenVec;
@@ -60,12 +61,12 @@ int main(int argc, char** argv) {
 	keyWords.push_back("int");
 	keyWords.push_back("return");
 	CheckTokenKeywords(keyWords, &tokenVec);
-
+	std::cout << "Generating AST!\n";
 	parser.Parse(tokenVec, &ast);
 
 	ASTNode * root = ast.GetRoot();
 	root->PrintNodes();
-
+	std::cout << "Writing binary file!\n";
 	std::ofstream ofile("../Documents/Examples/test1.lolc");
 	/*
 	if (ofile.is_open()) {
@@ -80,7 +81,7 @@ int main(int argc, char** argv) {
 
 
 	//Convert ast to binary
-
+	std::cout << "Done!\n";
 	std::cin.get();
 
 	return 0;

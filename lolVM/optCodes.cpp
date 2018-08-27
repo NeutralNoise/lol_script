@@ -291,7 +291,7 @@ void jne(cpu * c) {
 		//this acounts for the offset jump after each instruction
 		c->pc -= offset_table[CPU_OP_CODE::JMP_NOT_EQUAL];
 	}
-	
+
 }
 
 
@@ -378,7 +378,7 @@ void cmprtr(cpu  *c) {
 					c->compareFlags |= CPU_COMPARE_FLAGS::CMP_LESS_THAN;
 				}
 			}
-			
+
 		}
 		else if (src == CPU_REG_NUM::RD_NUM) {
 			if (c->rb == c->rd) {
@@ -410,7 +410,7 @@ void cmprtr(cpu  *c) {
 					c->compareFlags |= CPU_COMPARE_FLAGS::CMP_LESS_THAN;
 				}
 			}
-			
+
 		}
 		else if (src == CPU_REG_NUM::RD_NUM) {
 			if (c->rc == c->rd) {
@@ -440,7 +440,7 @@ void cmprtr(cpu  *c) {
 					c->compareFlags |= CPU_COMPARE_FLAGS::CMP_LESS_THAN;
 				}
 			}
-			
+
 		}
 
 	}
@@ -472,7 +472,7 @@ void cmprtr(cpu  *c) {
 					c->compareFlags |= CPU_COMPARE_FLAGS::CMP_LESS_THAN;
 				}
 			}
-			
+
 		}
 		else if (src == CPU_REG_NUM::RA_NUM) {
 			if (c->rd == c->ra) {
@@ -487,7 +487,7 @@ void cmprtr(cpu  *c) {
 					c->compareFlags |= CPU_COMPARE_FLAGS::CMP_LESS_THAN;
 				}
 			}
-			
+
 		}
 	}
 
@@ -577,7 +577,7 @@ void cmprtc(cpu  *c) {
 				c->compareFlags |= CPU_COMPARE_FLAGS::CMP_LESS_THAN;
 			}
 		}
-		
+
 	}
 	else if (dest == CPU_REG_NUM::RB_NUM) {
 		if (c->rb == (int32)c->instruction.second) {
@@ -623,7 +623,7 @@ void cmprtc(cpu  *c) {
 				c->compareFlags |= CPU_COMPARE_FLAGS::CMP_LESS_THAN;
 			}
 		}
-		
+
 	}
 }
 

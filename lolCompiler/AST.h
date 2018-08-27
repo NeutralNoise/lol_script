@@ -46,6 +46,9 @@ inline uint32_t ntohl(uint32_t v) {
 	return htonl(v);
 }
 
+
+#else
+#include <arpa/inet.h>
 #endif
 //#include <arpa/inet.h>
 

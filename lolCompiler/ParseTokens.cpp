@@ -80,7 +80,7 @@ void ParseTokens::Parse(const std::vector<Token> &tokens, ASTNode * perent) {
 	else if (tokens[m_tokPos].GetType() == TokenType::LEFT_CURLY_BRACET) {
 		// skip the curly (ew).
 		m_tokPos++;
-		SkipWhiteSpace(&m_tokPos, tokens);
+		SkipWhiteSpace((size_t*)&m_tokPos, tokens);
 		//pares a block.
 		Parse(tokens, perent);
 		return;

@@ -2,7 +2,7 @@
 #define CPU_CORE_H_INCLUDED
 
 #include <iostream>
-#include "type_def.h"
+#include "../Common/type_def.h"
 #include "../Common/optCodes.h"
 
 
@@ -90,7 +90,7 @@ struct cpu
 		this->memorySize = memorySize;
 		this->stackSize = stackSize;
 
-		
+
 
 		memory = new char[memorySize];
 		stackMemory = new char[stackSize];

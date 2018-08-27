@@ -34,7 +34,7 @@ void fetchRegToStack(cpu * c) {
 
 void fetchStackToReg(cpu * c) {
 	//what reg to put it in.
-	c->instruction.first = (char)(c->memory + c->pc + 1);
+	c->instruction.first = (char)*(c->memory + c->pc + 1);
 	//where we are getting the data from in the stack.
 	c->instruction.second = *(uint32*)(c->memory + c->pc + 2);
 }

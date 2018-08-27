@@ -6,7 +6,7 @@
 #include "tests/CpuTest.h"
 #include <fstream>
 #include <assert.h>
-
+#include <string.h>
 
 
 void ReadByte(std::ifstream &stream, unsigned char *byte) {
@@ -40,14 +40,18 @@ int main(int argc, char ** argv) {
 #else
 	cpu c(MB(1), MB(1));
 
-	std::ifstream file("../Documents/Examples/test1.lolc");
-
+	//TODO This doesn't work on linux
+	std::ifstream file("../Documents/Examples/test1.lolc", std::ios::binary | std::ios::in);
+	std::cout << "Opening binary file!\n";
 	if (file.is_open()) {
 		ReadBytes(file, (unsigned char*)&c.pc, sizeof(unsigned int));
-		
+
 		for (size_t i = c.pc; !file.eof(); i++) {
 			ReadByte(file, (unsigned char*)(c.memory + i));
 		}
+	}
+	else {
+		std::cout << "Failed opening binary file!\n";
 	}
 	while (c.running)
 	{
