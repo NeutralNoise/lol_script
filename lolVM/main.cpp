@@ -56,7 +56,7 @@ int main(int argc, char ** argv) {
 		std::cout << "../../Documents/Examples/test1.lolc\n";
 		file.open("../../Documents/Examples/test1.lolc", std::ios::binary | std::ios::in);
 	#endif
-
+	//TODO move this to a different folder.
 	std::cout << "Opening binary file!\n";
 	if (file.is_open()) {
 		ReadBytes(file, (unsigned char*)&c.pc, sizeof(unsigned int));

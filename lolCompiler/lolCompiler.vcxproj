@@ -86,6 +86,8 @@
     <ClInclude Include="..\Common\optCodes.h" />
     <ClInclude Include="AST.h" />
     <ClInclude Include="ASTNode.h" />
+    <ClInclude Include="ASTParser.h" />
+    <ClInclude Include="ASTWriter.h" />
     <ClInclude Include="Parsers.h" />
     <ClInclude Include="ParseTokens.h" />
     <ClInclude Include="Token.h" />
