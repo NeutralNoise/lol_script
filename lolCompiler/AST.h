@@ -5,7 +5,7 @@
 #include "ASTNode.h"
 #include "../Common/cpuEnums.h"
 
-
+//TODO This shits fucke. It needs to be removed or moved else where.
 #ifdef _WIN32
 //#include <Winsock2.h>
 #include <stdint.h>
@@ -50,10 +50,9 @@ inline uint32_t ntohl(uint32_t v) {
 #else
 #include <arpa/inet.h>
 #endif
-//#include <arpa/inet.h>
 
 
-
+//TODO write own file for these.
 
 inline void WriteByte(std::ofstream &stream, unsigned char byte) {
 	stream << byte;
@@ -61,10 +60,6 @@ inline void WriteByte(std::ofstream &stream, unsigned char byte) {
 
 inline void WriteBytes(std::ofstream &stream, unsigned char *byte, const size_t &size) {
 	stream.write((char*)byte, size);
-	/*
-	long test = (long)*byte;
-	std::cout << test;
-	*/
 }
 
 inline void ReadByte(std::ifstream &stream, unsigned char *byte) {
@@ -95,6 +90,7 @@ public:
 	void AddNode(ASTNode * perent, ASTNode *node) { perent->AddNode(node); }
 
 	//This most likely shouldn't be here
+	//TODO more this else where
 	void WriteAST(std::ofstream &stream) {
 		//we need to tell it what to do when writing a function. we will also have to keep track of where each thing is in memory.
 		size_t start = 0;

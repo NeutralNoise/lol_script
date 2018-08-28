@@ -51,7 +51,7 @@ void hlt(cpu * c);
 
 //4 after add, sub and mul are resurved for furture use. As is address 3B + 4 for div
 
-
+//TODO this should be moved some where to shut up cygwin g++
 // table of opcodes
 static void(*optable[256])(cpu*) = {
 	/*      | 0 |  1 |  2 |  3 |  4 |  5    |  6    |  7    |  8    |  9    |  A    |  B    |  C |  D |  E |  F |      */

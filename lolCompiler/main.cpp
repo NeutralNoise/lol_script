@@ -6,7 +6,7 @@
 #include <fstream>
 #include "ParseTokens.h"
 #include "AST.h"
-
+#include "ASTParser.h"
 
 //Check for key words
 //TODO find a better place for this :D
