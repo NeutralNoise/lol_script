@@ -9,6 +9,10 @@ if [ "$1" != "" ]; then
     echo Compiling $1 build.
     (cd lolVM && make check)
     (cd lolCompiler && make check)
+  elif [ $1 = clean ]; then
+    echo Cleaning build.
+    (cd lolVM && make clean)
+    (cd lolCompiler && make clean)
   else
     echo "We really do not know what $1 is."
   fi
