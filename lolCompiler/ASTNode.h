@@ -62,8 +62,6 @@ public:
 	void PrintNodes() {
 		for (size_t i = 0; i < m_nodes.size(); i++) {
 			std::cout << m_nodes[i]->GetLiteral() << '\n';
-		}
-		for (size_t i = 0; i < m_nodes.size(); i++) {
 			m_nodes[i]->PrintNodes();
 		}
 	}
