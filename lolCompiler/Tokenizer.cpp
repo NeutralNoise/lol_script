@@ -5,7 +5,7 @@ Tokenizer::Tokenizer()
 {
 
 
-	m_pattenData.push_back(TokenData("^(_?)*([a-zA-Z][a-zA-Z0-9]*)", TokenType::IDENTIFIER));
+	m_pattenData.push_back(TokenData("^(_?)*([a-zA-Z][_a-zA-Z0-9]*)", TokenType::IDENTIFIER));
 	m_pattenData.push_back(TokenData(R"(^((-)?[0-9]+))", TokenType::INTEGER_LITERAL));
 	m_pattenData.push_back(TokenData("^(\".*\")", TokenType::STRING_LITERAL));
 	m_pattenData.push_back(TokenData("^(\'.*\')", TokenType::CHAR_LITERAL));
