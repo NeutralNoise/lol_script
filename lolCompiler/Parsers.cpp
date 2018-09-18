@@ -56,9 +56,6 @@ bool ParseFuntions(std::vector<Token> * toks, ASTNode * ast) {
 			funcIndentNode->SetType(ASTNodeType::AST_Function_Identifier);
 			newNode->AddNode(funcIndentNode);
 
-
-
-
 			for (size_t i = 0; i < toks->size(); i++) {
 				if (toks->operator[](i).GetType() == TokenType::KEYWORD) {
 					//We will only store the start token.
@@ -69,7 +66,7 @@ bool ParseFuntions(std::vector<Token> * toks, ASTNode * ast) {
 					for (size_t t = i + 1; toks->operator[](t).GetType() != TokenType::LEFT_BRACET; t++) {
 						SkipWhiteSpace(&t, *toks);
 						lit += toks->operator[](t).GetToken();
-						
+
 					}
 					funcIndentNode->SetLiteral(lit);
 
@@ -95,16 +92,26 @@ bool ParseFuntions(std::vector<Token> * toks, ASTNode * ast) {
 						end = t + 1;
 					}
 					blockLit += toks->operator[](end).GetToken();
-					
+
 					block->SetLiteral(blockLit);
 					//TODO parse a block statement
+					//keep going until the end of the block
 					ParseTokens parser;
 					std::vector<Token> blockToks = *toks;
 					blockToks.erase(blockToks.begin(), blockToks.begin() + i);
-					parser.Parse(blockToks, block);
-					i += parser.m_tokPos;
-					//Eat what we have used this is done at the end so the tokenizer knows where it is upto
-					toks->erase(toks->begin(), toks->begin() + i);
+					size_t blockPos = i;
+					while ((*toks)[blockPos].GetType() != TokenType::RIGHT_CURLY_BRACET)
+					{
+						parser.Parse(blockToks, block);
+						blockPos += parser.m_tokPos;
+						//Eat what we have used this is done at the end so the tokenizer knows where it is upto
+						toks->erase(toks->begin(), toks->begin() + blockPos);
+						blockToks = *toks;
+						//Reset our position.
+						blockPos = 0;
+						parser.m_tokPos = 0;
+						//SkipWhiteSpace(&blockPos, *toks);
+					}
 					//Add the node to the perent node.
 					ast->AddNode(newNode);
 					return true;
@@ -123,8 +130,10 @@ bool ShouldParseVar(const std::vector<Token> &toks) {
 	SkipWhiteSpace(&skip, toks);
 	for (size_t i = skip; i < toks.size(); i++) {
 		if (toks[i].GetType() == TokenType::KEYWORD) {
+			i++;
 			SkipWhiteSpace(&i, toks);
 			if (toks[i].GetType() == TokenType::IDENTIFIER) {
+				i++;
 				SkipWhiteSpace(&i, toks);
 				if (toks[i].GetType() == TokenType::SEMI_COLON || toks[i].GetType() == TokenType::ASSIGN) {
 					return true;
@@ -156,14 +165,16 @@ extern bool ParseVarible(std::vector<Token> * toks, ASTNode * ast) {
 				varDecl->SetType(ASTNodeType::AST_Variable_Declaration);
 				varDecl->SetToken(toks->operator[](i));
 				varDecl->SetLiteral(toks->operator[](i).GetToken());
+				i++;
 				SkipWhiteSpace(&i, *toks);
 
 				if ((*toks)[i].GetType() == TokenType::IDENTIFIER) {
 
 					ASTNode * ident = new ASTNode;
 					ident->SetType(ASTNodeType::AST_Variable_Identifier);
-					varDecl->SetToken(toks->operator[](i));
-					varDecl->SetLiteral(toks->operator[](i).GetToken());
+					ident->SetToken(toks->operator[](i));
+					ident->SetLiteral(toks->operator[](i).GetToken());
+					i++;
 					SkipWhiteSpace(&i, *toks);
 
 					//Check if this is the end or if we have some more work todo.
@@ -187,30 +198,59 @@ extern bool ParseVarible(std::vector<Token> * toks, ASTNode * ast) {
 							toks->erase(toks->begin(), toks->begin() + i);
 							return true;
 						}
+						//TODO more type checking
 						//TODO += -= *= /= <<= >>=
 						else if ((*toks)[i].GetType() == TokenType::ASSIGN) {
+							i++;
 							SkipWhiteSpace(&i, *toks);
-							if ((*toks)[i].GetType() == TokenType::CHAR_LITERAL || (*toks)[i].GetType() == TokenType::INTEGER_LITERAL) {
-								SkipWhiteSpace(&i, *toks);
-								if ((*toks)[i].GetType() == TokenType::SEMI_COLON) {
-									ASTNode* varDecl = new ASTNode;
-									varDecl->SetType(ASTNodeType::AST_Variable_Declaration);
-									ASTNode * var = new ASTNode;
-									var->SetType(ASTNodeType::AST_Variable_Declarator);
-									varDecl->AddNode(var);
-									ASTNode * lit = new ASTNode;
-									ident->SetType(ASTNodeType::AST_Variable_Identifier);
-									lit->SetType(ASTNodeType::AST_Literal);
-									var->AddNode(ident);
-									var->AddNode(lit);
-									toks->erase(toks->begin(), toks->begin() + i);
-									return true;
-								}
-								else {
-									//TODO error message
-								}
+							//Parseing these should be in there own function to allow for more then one literal.
+							if ((*toks)[i].GetType() == TokenType::CHAR_LITERAL) {
+								//TODO chars
 							}
-							else if ((*toks)[i].GetType() == TokenType::IDENTIFIER) {
+							else if ((*toks)[i].GetType() == TokenType::INTEGER_LITERAL){
+
+								//TODO Do better type checking.
+								if (varDecl->GetLiteral() != "int") {
+									//TODO error message.
+									delete ident;
+									delete varDecl;
+									return false;
+								}
+
+								ASTNode * lit = new ASTNode;
+								lit->SetType(ASTNodeType::AST_Literal);
+								lit->SetToken((*toks)[i]);
+								lit->SetLiteral((*toks)[i].GetToken());
+								ident->AddNode(lit);
+								//TODO we need to be able to do math while assigning variables.
+								i++;
+								SkipWhiteSpace(&i, *toks);
+							}
+							bool moreLit = true;
+							while (1) {
+								if ((*toks)[i].GetType() != TokenType::SEMI_COLON || (*toks)[i].GetType() != TokenType::NONE) {
+									break;
+								}
+								//TODO We should check for more literals here.
+								i++;
+							}
+							//We have an error.
+							if ((*toks)[i].GetType() == TokenType::NONE) {
+								//TODO error message
+								varDecl->Clean();
+								delete varDecl;
+								return false;
+							}
+							else if ((*toks)[i].GetType() == TokenType::SEMI_COLON) {
+								//End of this statement.
+								varDecl->AddNode(ident);
+								ast->AddNode(varDecl);
+								toks->erase(toks->begin(), toks->begin() + i);
+								return true;
+							}
+
+							//We should get here just yet.
+							if ((*toks)[i].GetType() == TokenType::IDENTIFIER) {
 								ASTNode* varDecl = new ASTNode;
 								varDecl->SetType(ASTNodeType::AST_Variable_Declaration);
 								ASTNode * var = new ASTNode;
@@ -245,7 +285,12 @@ extern bool ShouldParseReturn(const std::vector<Token> &toks) {
 	SkipWhiteSpace(&skip, toks);
 
 	if (toks[skip].GetType() == TokenType::KEYWORD) {
+		/*
 		if (strcmp(toks[skip].GetToken().c_str(), "return") == 0) {
+			return true;
+		}
+		*/
+		if (toks[skip].GetToken() == "return") {
 			return true;
 		}
 	}
@@ -256,9 +301,9 @@ extern bool ParseReturn(std::vector<Token> * toks, ASTNode * ast) {
 	if (ShouldParseReturn(*toks)) {
 		size_t skip = 0;
 		SkipWhiteSpace(&skip, *toks);
-
 		std::string lit;
 		//Get the literal;
+		/*
 		for (size_t i = skip; i < toks->size(); i++) {
 			if (toks->operator[](i).GetType() == TokenType::SEMI_COLON) {
 				lit += toks->operator[](i).GetToken();
@@ -268,10 +313,11 @@ extern bool ParseReturn(std::vector<Token> * toks, ASTNode * ast) {
 				lit += toks->operator[](i).GetToken();
 			}
 		}
+		*/
 
 		ASTNode * statement = new ASTNode;
 		statement->SetType(ASTNodeType::AST_Return_Statement);
-		statement->SetLiteral(lit);
+		statement->SetLiteral("return");
 		skip++;
 		SkipWhiteSpace(&skip, *toks);
 		if (toks->operator[](skip).GetType() == TokenType::CHAR_LITERAL || toks->operator[](skip).GetType() == TokenType::INTEGER_LITERAL) {
@@ -292,11 +338,19 @@ extern bool ParseReturn(std::vector<Token> * toks, ASTNode * ast) {
 			//TODO error checking
 		}
 
+		while (1) {
+			if ((*toks)[skip].GetType() != TokenType::SEMI_COLON || (*toks)[skip].GetType() != TokenType::NONE) {
+				break;
+			}
+			//TODO We should check for more literals here in the return statement
+			skip++;
+		}
+
 		skip++;
 		SkipWhiteSpace(&skip, *toks);
 		if (toks->operator[](skip).GetType() == TokenType::SEMI_COLON) {
 			ast->AddNode(statement);
-			toks->erase(toks->begin(), toks->begin() + skip);
+			toks->erase(toks->begin(), toks->begin() + (skip + 1));
 			return true;
 		}
 		else {
