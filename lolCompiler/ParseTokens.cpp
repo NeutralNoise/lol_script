@@ -27,6 +27,7 @@ void ParseTokens::Parse(const std::vector<Token> &tokens, AST * ast) {
 }
 
 void ParseTokens::Parse(const std::vector<Token> &tokens, ASTNode * perent) {
+	SkipWhiteSpace(&m_tokPos, tokens);
 	//This is where we parse the different blocks into the ast
 	if (tokens[m_tokPos].GetType() == TokenType::KEYWORD) {
 		//Make sure we are pointing to the right part of the tokens.
@@ -35,7 +36,8 @@ void ParseTokens::Parse(const std::vector<Token> &tokens, ASTNode * perent) {
 		//TODO check for verible decl
 		//TODO check for keywords like return and sizeof
 
-		if (ParseVarible(&tok, perent)) {
+		//Check if return statement.
+		if (ParseReturn(&tok, perent)) {
 			if (tok.size() < tokens.size()) {
 				size_t dif = tokens.size() - tok.size();
 				std::vector<Token> tmpTok = tokens;
@@ -48,8 +50,7 @@ void ParseTokens::Parse(const std::vector<Token> &tokens, ASTNode * perent) {
 			return;
 		}
 
-		//Check if return statement.
-		if (ParseReturn(&tok, perent)) {
+		if (ParseVarible(&tok, perent)) {
 			if (tok.size() < tokens.size()) {
 				size_t dif = tokens.size() - tok.size();
 				std::vector<Token> tmpTok = tokens;
