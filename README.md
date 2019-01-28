@@ -14,6 +14,9 @@ Well its because I can. I want to learn how this is done. Plus its fun thinking 
 Its a virtual machine that lol_script runs on. Its still a work in progress and will
 change over time.
 
+## Known Issues
+Currently Doesn't run correctly under Cygwin. So I guess Linux Builds Will not work either.
+
 ## Todo
 
 1. Write the rest of the compiler. (Started) Compiles test1.lol in "Documents/Examples"
