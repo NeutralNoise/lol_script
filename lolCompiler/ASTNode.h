@@ -29,7 +29,7 @@ enum ASTNodeType {
 class ASTNode
 {
 public:
-	ASTNode() {}
+	ASTNode() { p_perent = nullptr; }
 	~ASTNode() { }
 	
 	ASTNode * GetPerent() { return  p_perent; }

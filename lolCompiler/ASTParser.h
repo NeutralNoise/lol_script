@@ -17,6 +17,7 @@ inline unsigned int ASTParseReturn(std::ifstream &stream, ASTNode * perent) {
 					//TODO check for function calls
 					if (nodes[i]->GetNodes()[0]->GetToken().GetType() == TokenType::INTEGER_LITERAL) {
 						//WE have a const number returning
+						std::cout << "INT LIT" << std::endl;
 					}
 					else if (nodes[i]->GetNodes()[0]->GetToken().GetType() == TokenType::CHAR_LITERAL) {
 						//WE have a const char returning
@@ -39,9 +40,10 @@ inline unsigned int ASTParseReturn(std::ifstream &stream, ASTNode * perent) {
 			//just write hlt at the moment. should just to next thing in calling function.
 			//TODO jmp not hlt
 		}
-
+		/*
 		char * op = new char[sizeof(char) + sizeof(char) + sizeof(int) + sizeof(char)];
 		unsigned int size = sizeof(char) + sizeof(char) + sizeof(int) + sizeof(char);
+		*/
 	}
 }
 

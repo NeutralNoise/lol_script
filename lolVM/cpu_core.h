@@ -147,7 +147,7 @@ struct cpu
 	}
 
 	void PrintState() {
-		std::cout << "<REGS> " << ra << " " << rb << " " << rc << " " << rd << " " << std::endl;
+		std::cout << "<REGS> " << (unsigned int)ra << " " << rb << " " << rc << " " << rd << " " << std::endl;
 		std::cout << "<INTR> " << opCodeToString((CPU_OP_CODE)instruction.opCode) << " " << instruction.first << " " << instruction.second << " " << instruction.third << " " << instruction.forth << " " << std::endl;
 		std::cout << "<CMP_FLAGS> =" << (compareFlags & CPU_COMPARE_FLAGS::CMP_EQUAL) << " !=" << (compareFlags & CPU_COMPARE_FLAGS::CMP_NOT_EQUAL) << " > " << (compareFlags & CPU_COMPARE_FLAGS::CMP_GRATER_THAN) << " < " << (compareFlags & CPU_COMPARE_FLAGS::CMP_LESS_THAN) << "\n";
 		std::cout << "Stack Counter = " << stc << "\n";

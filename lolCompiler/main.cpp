@@ -26,18 +26,20 @@ int main(int argc, char** argv) {
 	Tokenizer tokens;
 	ParseTokens parser;
 	AST ast;
+	std::string fileName = "../../Documents/Examples/test2.lol";
 
-	std::ifstream file("../Documents/Examples/test1.lol");
+	std::ifstream file(fileName);
 	std::vector<std::string> test;
 	std::cout << "Loading File!\n";
 	if (file.is_open()) {
+		std::cout << fileName << std::endl;
 		std::string tmpLine;
 		while (std::getline(file, tmpLine)) {
 			test.push_back(tmpLine);
 		}
 	}
 
-std::cout << "Generating Tokens!\n";
+	std::cout << "Generating Tokens!\n";
 	int current_pos = 0;
 	int current_size = test.size();
 	std::vector<Token> tokenVec;
@@ -63,11 +65,12 @@ std::cout << "Generating Tokens!\n";
 	CheckTokenKeywords(keyWords, &tokenVec);
 	std::cout << "Generating AST!\n";
 	parser.Parse(tokenVec, &ast);
-
+	std::cout << "TOKENS:\n";
 	ASTNode * root = ast.GetRoot();
 	root->PrintNodes();
 	std::cout << "Writing binary file!\n";
-	std::ofstream ofile("../Documents/Examples/test1.lolc");
+	//std::ofstream ofile("../Documents/Examples/test1.lolc");
+	std::ofstream ofile("../Documents/Examples/test2.lolc");
 	/*
 	if (ofile.is_open()) {
 		//WriteByte(ofile, 't');

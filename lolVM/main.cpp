@@ -44,6 +44,7 @@ int main(int argc, char ** argv) {
 	//TODO Clean this shit up
 	//../../Documents/Examples/test1.lolc
 	std::ifstream file;
+#if 0
 	#if defined(_WIN32) || defined(__CYGWIN__)
 		#ifdef __CYGWIN__
 			std::cout << "../../Documents/Examples/test1.lolc\n";
@@ -56,18 +57,35 @@ int main(int argc, char ** argv) {
 		std::cout << "../../Documents/Examples/test1.lolc\n";
 		file.open("../../Documents/Examples/test1.lolc", std::ios::binary | std::ios::in);
 	#endif
+#endif
+	#if defined(_WIN32) || defined(__CYGWIN__)
+	#ifdef __CYGWIN__
+			std::cout << "../../Documents/Examples/test2.lolc\n";
+			file.open("../../Documents/Examples/test2.lolc", std::ios::binary | std::ios::in);
+	#else
+			std::cout << "../Documents/Examples/test2.lolc\n";
+			file.open("../Documents/Examples/test2.lolc", std::ios::binary | std::ios::in);
+	#endif
+	#elif __linux__
+			std::cout << "../../Documents/Examples/test2.lolc\n";
+			file.open("../../Documents/Examples/test2.lolc", std::ios::binary | std::ios::in);
+	#endif
+
 	//TODO move this to a different folder.
 	std::cout << "Opening binary file!\n";
 	if (file.is_open()) {
 		ReadBytes(file, (unsigned char*)&c.pc, sizeof(unsigned int));
-
 		for (size_t i = c.pc; !file.eof(); i++) {
 			ReadByte(file, (unsigned char*)(c.memory + i));
 		}
+		//TODO this is a shit idea.
+		c.pc += 4;
 	}
 	else {
 		std::cout << "Failed opening binary file!\n";
 	}
+
+	std::cout << "Finished loading binary file!\n";
 
 	while (c.running)
 	{

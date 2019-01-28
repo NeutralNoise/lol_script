@@ -3,8 +3,12 @@
 #include <fstream>
 class ASTNode;
 
-inline unsigned int WriteReturn(std::ifstream &stream, ASTNode * perent) {
+extern bool CheckVeriableIsReal(ASTNode * perent, unsigned int *nodePos, unsigned int *identPos);
 
-}
+extern unsigned int WriteReturn(std::ofstream &stream, ASTNode * perent);
+
+extern unsigned int WriteVeriable(std::ofstream &stream, ASTNode * perent);
+
+extern unsigned int WriteReturnVariable(std::ofstream &stream, ASTNode * perent, ASTNode * node);
 
 #endif //AST_WRITER_H

@@ -11,14 +11,16 @@ if [ "$1" != "" ]; then
     (cd lolCompiler && make check)
   elif [ $1 = clean ]; then
     echo Cleaning build.
-    (cd lolVM && make clean)
-    (cd lolCompiler && make clean)
+    (cd lolVM && make clean && rm -f Debug)
+    (cd lolCompiler && make clean && rm -f Debug)
   else
     echo "We really do not know what $1 is."
   fi
+  echo $1 build finished
 else
   echo Compiling Debug build.
   (cd lolVM && make)
   (cd lolCompiler && make)
+  echo Debug build finished
 fi
 echo DONE!

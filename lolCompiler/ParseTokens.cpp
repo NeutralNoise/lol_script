@@ -27,7 +27,7 @@ void ParseTokens::Parse(const std::vector<Token> &tokens, AST * ast) {
 }
 
 void ParseTokens::Parse(const std::vector<Token> &tokens, ASTNode * perent) {
-	SkipWhiteSpace(&m_tokPos, tokens);
+	SkipWhiteSpace((size_t*)(&m_tokPos), tokens);
 	//This is where we parse the different blocks into the ast
 	if (tokens[m_tokPos].GetType() == TokenType::KEYWORD) {
 		//Make sure we are pointing to the right part of the tokens.

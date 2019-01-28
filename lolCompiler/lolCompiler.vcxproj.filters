@@ -27,6 +27,9 @@
     <ClCompile Include="Parsers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ASTWriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Token.h">

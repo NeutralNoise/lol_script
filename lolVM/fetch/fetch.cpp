@@ -4,7 +4,8 @@
 
 void fetch(cpu * c) {
 
-	//c->instruction.opCode = *(c->memory + c->pc);
+	c->instruction.opCode = *(c->memory + c->pc);
+	std::cout << std::to_string(c->instruction.opCode) << std::endl;
 	switch (*(unsigned char*)(c->memory + c->pc))
 	{
 	case CPU_OP_CODE::JMP_TO_MEM:
