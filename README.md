@@ -18,11 +18,4 @@ change over time.
 Currently Doesn't run correctly under Cygwin. So I guess Linux builds will not work either.
 
 ## Todo
-
-1. Write the rest of the compiler. (Started) Compiles test1.lol in "Documents/Examples"
-2. Add some more OP codes. i.e. shifting left.
-3. Add lua scripting.
-4. Documentation of the VM and compiler design.
-5. Dynamically loaded library or lua script for file output on compiler.
-6. Dynamically loaded library or lua script for parsing the incoming files.
-7. Maybe some other stuff when I get here.
+[TODO.md](See todo file.)
