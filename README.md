@@ -15,7 +15,7 @@ Its a virtual machine that lol_script runs on. Its still a work in progress and 
 change over time.
 
 ## Known Issues
-Currently Doesn't run correctly under Cygwin. So I guess Linux Builds Will not work either.
+Currently Doesn't run correctly under Cygwin. So I guess Linux builds will not work either.
 
 ## Todo
 
