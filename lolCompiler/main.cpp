@@ -26,7 +26,17 @@ int main(int argc, char** argv) {
 	Tokenizer tokens;
 	ParseTokens parser;
 	AST ast;
+	//std::string fileName = "../../Documents/Examples/test2.lol";
+
+#if defined(_WIN32) || defined(__CYGWIN__)
+#ifdef __CYGWIN__
 	std::string fileName = "../../Documents/Examples/test2.lol";
+#else
+	std::string fileName = "../Documents/Examples/test2.lol";
+#endif
+#elif __linux__
+	std::string fileName = "../../Documents/Examples/test2.lol";
+#endif
 
 	std::ifstream file(fileName);
 	std::vector<std::string> test;
