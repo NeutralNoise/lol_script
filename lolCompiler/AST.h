@@ -7,6 +7,7 @@
 #include "ASTWriter.h"
 
 //TODO This shits fucke. It needs to be removed or moved else where.
+//TODO This needs to do a lot more work.
 #ifdef _WIN32
 //#include <Winsock2.h>
 #include <stdint.h>
@@ -15,10 +16,12 @@
 #undef htonl
 #undef ntohs
 #undef ntohl
-
+//This needs to better support other endianness
 #define BIG_ENDIAN 1
 #define LITTLE_ENDIAN 2
-#define BYTE_ODER LITTLE_ENDIAN
+#define WINDOWS_ENDIAN 3
+//#define BYTE_ORDER LITTLE_ENDIAN
+#define BYTE_ORDER WINDOWS_ENDIAN
 
 
 #if BYTE_ORDER == LITTLE_ENDIAN
@@ -79,21 +82,65 @@ inline void ReadBytes(std::ifstream &stream, unsigned char *byte, const size_t &
 }
 
 
+/**
+ * \class AST
+ * \brief Abstract Syntax Tree
+ * 
+*/
 
 class AST
 {
 public:
+
+	/**
+	 * \brief Construct a new AST object
+	 * 
+	*/
+
 	AST() { if (p_root == nullptr) p_root = new ASTNode; p_root->SetType(ASTNodeType::AST_Program); }
+
+	/**
+	 * \brief Destroy the AST object
+	 * 
+	*/
+
 	~AST() {}
 
+	/**
+	 * \brief Get the Root of the tree.
+	 * 
+	 * \return ASTNode* 
+	*/
+
 	ASTNode * GetRoot() { return p_root; }
+
+	/**
+	 * \brief Set the Root object
+	 * 
+	 * \param root The node where the tree strarts.
+	*/
+
 	void SetRoot(ASTNode * root){ p_root = root; }
+
+	/**
+	 * \brief Add a node to the tree.
+	 * 
+	 * \param perent Where does this node connect to the rest of the tree.
+	 * \param node The node to add to the tree.
+	*/
 
 	void AddNode(ASTNode * perent, ASTNode *node) { perent->AddNode(node); }
 
 	//This most likely shouldn't be here
 	//TODO move this else where
 	//TODO break this up so that each type of node has its own write funtion. CHECK ASTWriter.h
+
+	/**
+	 * \brief Write the AST to an out stream
+	 * 
+	 * \param stream The string to write the AST too.
+	*/
+
 	void WriteAST(std::ofstream &stream) {
 		//we need to tell it what to do when writing a function. we will also have to keep track of where each thing is in memory.
 		size_t start = 0;
@@ -301,8 +348,8 @@ public:
 	}
 
 private:
-	ASTNode * p_root = nullptr;
-	unsigned int m_fileCursor = 0;
+	ASTNode * p_root = nullptr; //!< The start of the AST.
+	unsigned int m_fileCursor = 0; //!< Where we are currently looking in the opened file.
 };
 
 #endif //AST_H

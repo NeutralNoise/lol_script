@@ -3,14 +3,43 @@
 #include "Token.h"
 #include <vector>
 #include <iostream>
+
+/** 
+ * \class Tokenizer
+ * \brief Checks strings for tokens.
+ * 
+*/
+
 class Tokenizer
 {
 public:
+
+	/**
+	 * \brief Construct a new Tokenizer object
+	 * 
+	*/
+
 	Tokenizer();
+
+	/**
+	 * \brief Destroy the Tokenizer object
+	 * 
+	*/
+
 	~Tokenizer();
 	
 
 	//Why is this here.....
+
+	/**
+	 * \brief Looks for a token in the given string.
+	 * 
+	 * \param str The string to look for the token in.
+	 * \param line The current line within the file.
+	 * \param pos The position in the line.
+	 * \return Token
+	*/
+
 	Token nextToken(std::string *str, const int &line, const int pos) {
 		if (m_pushBack) {
 			m_pushBack = false;
@@ -50,9 +79,9 @@ public:
 
 
 private:
-	std::vector<TokenData> m_pattenData;
-	Token m_lastToken;
-	bool m_pushBack;
+	std::vector<TokenData> m_pattenData; //!< Tokens to look for.
+	Token m_lastToken; //!< The last token that was found.
+	bool m_pushBack; //!< What?
 
 };
 

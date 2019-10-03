@@ -3,7 +3,8 @@
 
 Tokenizer::Tokenizer()
 {
-
+	//To learn about the capital R
+	//https://en.cppreference.com/w/cpp/language/string_literal
 
 	m_pattenData.push_back(TokenData("^(_?)*([a-zA-Z][_a-zA-Z0-9]*)", TokenType::IDENTIFIER));
 	m_pattenData.push_back(TokenData(R"(^((-)?[0-9]+))", TokenType::INTEGER_LITERAL));

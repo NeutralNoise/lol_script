@@ -47,12 +47,23 @@ enum TokenType {
 	NONE // Not a type
 };
 
+/**
+ * \struct Token 
+ * \brief Information about a token
+ * 
+*/
+
 struct Token
 {
-	std::string token;
-	TokenType type;
-	int line;
-	int linePos;
+	std::string token; //!< The token string.
+	TokenType type; //!< The type of token. \see TokenType
+	int line; //!< The line in the file the token was found.
+	int linePos; //!< The position in the line the token was found.
+
+	/**
+	 * \brief Construct a new Token object
+	 * 
+	*/
 
 	Token() {
 		line = 0;
@@ -61,6 +72,13 @@ struct Token
 		this->type = TokenType::NONE;
 	}
 
+	/**
+	 * \brief Construct a new Token object
+	 * 
+	 * \param token The token found.
+	 * \param type The type of token found.
+	*/
+
 	Token(const std::string &token, const TokenType &type) {
 		line = 0;
 		linePos = 0;
@@ -68,9 +86,21 @@ struct Token
 		this->type = type;
 	}
 
+	/**
+	 * \brief Get the Token string.
+	 * 
+	 * \return std::string of the token
+	*/
+
 	std::string GetToken() const {
 		return token;
 	}
+
+	/**
+	 * \brief Get the Type type.
+	 * 
+	 * \return TokenType \see TokenType
+	*/
 
 	TokenType GetType() const {
 		return type;
@@ -78,23 +108,55 @@ struct Token
 
 };
 
+/**
+ * \struct TokenData 
+ * \brief Contains information used when looking for Tokens.
+ * 
+*/
+
 struct TokenData 
 {
-	std::regex patten;
-	TokenType type;
+	std::regex patten; //!< The Regex patten used to find the tokens.
+	TokenType type; //!< The type of token the patten matchs.
+
+	/**
+	 * \brief Construct a new TokenData object
+	 * 
+	 * \param patten The patten used to find the Token
+	 * \param type The TokenType the patten matchs. \see TokenType
+	*/
 
 	TokenData(const std::string &patten, const TokenType &type) {
 		this->patten = std::regex(patten, std::regex_constants::ECMAScript);
 		this->type = type;
 	}
 
+	/**
+	 * \brief Get the Patten.
+	 * 
+	 * \return std::regex 
+	*/
+
 	std::regex GetPatten() const {
 		return patten;
 	}
 
+	/**
+	 * \brief Get the TokenType.
+	 * 
+	 * \return TokenType 
+	*/
+
 	TokenType GetType() const {
 		return type;
 	}
+
+	/**
+	 * \brief Checks if the given string matchs the patten.
+	 * 
+	 * \param str The string string check for the Regex patten.
+	 * \return Token
+	*/
 
 	Token CheckToken(const std::string &str) {
 		auto words_begin = std::sregex_iterator(str.begin(), str.end(), patten);
