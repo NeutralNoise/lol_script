@@ -17,6 +17,7 @@ A basic list of some things that need to be done.
 11. Maybe some other stuff when I get here.
 
 ## Virtual Machine
+
 1. Add some more OP codes. i.e. shifting left. (based of x86 ASM)
 2. Terminal display access.
 3. Hard drive acess.
@@ -24,13 +25,15 @@ A basic list of some things that need to be done.
 5. Graphics access (OpenGL?)
 
 ## Both
+
 1. Documentation of the VM and compiler design.
-2. Comment code for doxygen generation.
+2. Comment code for doxygen generation. (This will for ever be ongoing.)
 
 ## Pipe dreams
+
 1. Embedding within c/c++ programs
   1. Accessing c/c++ functions and data.
   2. C/C++ calling and accessing script functions and data.
-2. Add lua scripting.
 3. Dynamically loaded library or lua script for file output on compiler.
 4. Dynamically loaded library or lua script for parsing the incoming files.
+  - This Is more so the compiler can compile other languages. This should generate an AST the compiler knows.
