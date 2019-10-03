@@ -169,11 +169,13 @@ void movctm(cpu * c) {
 	*(uint32*)(c->memory + c->instruction.first) = c->instruction.second;
 }
 
+//TODO Look at other ways to access the stack
 //Move register to stack
 void movrts(cpu * c) {
 
 	int32 src = c->instruction.first;
-
+	//NOTE This will look down the stack from the top
+	
 	if (src == CPU_REG_NUM::RA_NUM) {
 		*(uint32*)(c->stackMemory + (c->stc - c->instruction.second)) = c->ra;
 	}
@@ -191,7 +193,7 @@ void movrts(cpu * c) {
 //Move stack to register
 void movstr(cpu * c) {
 	int32 src = c->instruction.second;
-
+	//NOTE This will look down the stack from the top
 	if (src == CPU_REG_NUM::RA_NUM) {
 		c->ra = *(uint32*)(c->stackMemory + (c->stc - c->instruction.first));
 	}
@@ -210,6 +212,7 @@ void movstr(cpu * c) {
 //Stack stuff
 void pshreg(cpu * c) {
 	int32 src = c->instruction.first;
+	//TODO Check for stack over flow.
 	if (src == CPU_REG_NUM::RA_NUM) {
 		*(uint32*)(c->stackMemory + c->stc) = c->ra;
 		c->stc += RegJmp;
@@ -234,6 +237,7 @@ void pshreg(cpu * c) {
 
 void pshmem(cpu * c) {
 	int32 type = c->instruction.first;
+	//TODO Check for stack over flow.
 	if (type == VAL_TYPE::PTR) {
 		//*(uint32*)(c->stackMemory + c->stc) = *(uint32*)(c->memory + c->instruction.second);
 		*(uint32*)(c->stackMemory + c->stc) = c->instruction.second;
