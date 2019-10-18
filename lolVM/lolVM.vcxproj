@@ -98,7 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\cpuEnums.h" />
+    <ClInclude Include="..\Common\ErrorMessage.h" />
     <ClInclude Include="..\Common\optCodes.h" />
+    <ClInclude Include="..\Common\type_def.h" />
     <ClInclude Include="CounterJumpSize.h" />
     <ClInclude Include="cpu_core.h" />
     <ClInclude Include="defines.h" />
@@ -110,7 +112,6 @@
     <ClInclude Include="fetch\fetch_mov.h" />
     <ClInclude Include="fetch\fetch_stack.h" />
     <ClInclude Include="tests\CpuTest.h" />
-    <ClInclude Include="type_def.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

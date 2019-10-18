@@ -7,7 +7,10 @@
 #include <fstream>
 #include <assert.h>
 #include <string.h>
+#include "../Common/ErrorMessage.h"
 
+//TODO WHAT THE FUCK IS THIS DOING HERE!!!!
+ErrorHandlerCom * ErrorHandlerCom::p_instance = nullptr;
 
 void ReadByte(std::ifstream &stream, unsigned char *byte) {
 	stream >> *byte;
@@ -24,10 +27,18 @@ void ReadBytes(std::ifstream &stream, unsigned char *byte, const size_t &size) {
 }
 
 
+void OnPrint(const ErrorMessage &msg) {
+	std::cout << msg.msg << "\n";
+}
+
+void OnFatel(const ErrorMessage &msg) {
+	std::cin.get();
+	exit(6);
+}
+
 int main(int argc, char ** argv) {
 
 	//Do some checks to make sure our veriable sizes are ok
-
 	assert(sizeof(char) == 1);
 	assert(sizeof(uint32) == 4);
 	assert(sizeof(uint64) == 8);
@@ -38,6 +49,9 @@ int main(int argc, char ** argv) {
 	CpuTest testCPU;
 	testCPU.RunTests();
 #else
+
+	EHC::InitErrorHandler(&OnPrint, &OnFatel);
+
 	cpu c(MB(1), MB(1));
 
 	//TODO This doesn't work on linux
@@ -70,7 +84,8 @@ int main(int argc, char ** argv) {
 			std::cout << "../../Documents/Examples/test2.lolc\n";
 			file.open("../../Documents/Examples/test2.lolc", std::ios::binary | std::ios::in);
 	#endif
-
+	//TODO Check file size.
+	//TODO Create File systems.
 	//TODO move this to a different folder.
 	std::cout << "Opening binary file!\n";
 	if (file.is_open()) {

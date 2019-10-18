@@ -2,6 +2,7 @@
 #include "../Common/cpuEnums.h"
 #include "cpu_core.h"
 #include "CounterJumpSize.h"
+#include "../Common/ErrorMessage.h"
 
 void nop(cpu * c) {}
 
@@ -212,7 +213,11 @@ void movstr(cpu * c) {
 //Stack stuff
 void pshreg(cpu * c) {
 	int32 src = c->instruction.first;
-	//TODO Check for stack over flow.
+	//NOTE Should this be only greater than.
+	if (c->stc >= c->stackSize) {
+		EHC::GetInstance()->AddMessage(ErrorLevel::E_FATAL, ErrorFrom::EF_VM, ErrorString::ES_StackOverFlow);
+	}
+
 	if (src == CPU_REG_NUM::RA_NUM) {
 		*(uint32*)(c->stackMemory + c->stc) = c->ra;
 		c->stc += RegJmp;
@@ -229,15 +234,16 @@ void pshreg(cpu * c) {
 		*(uint32*)(c->stackMemory + c->stc) = c->ra;
 		c->stc += RegJmp;
 	}
-	if (c->stc >= c->stackSize) {
-		//TODO error check
-		//error
-	}
 }
 
 void pshmem(cpu * c) {
 	int32 type = c->instruction.first;
-	//TODO Check for stack over flow.
+	
+	//NOTE Should this be only greater than.
+	if (c->stc >= c->stackSize) {
+		EHC::GetInstance()->AddMessage(ErrorLevel::E_FATAL, ErrorFrom::EF_VM, ErrorString::ES_StackOverFlow);;
+	}
+
 	if (type == VAL_TYPE::PTR) {
 		//*(uint32*)(c->stackMemory + c->stc) = *(uint32*)(c->memory + c->instruction.second);
 		*(uint32*)(c->stackMemory + c->stc) = c->instruction.second;
@@ -255,10 +261,6 @@ void pshmem(cpu * c) {
 		*(uint32*)(c->stackMemory + c->stc) = (uint32)c->instruction.second;
 		c->stc += MemJmp;
 	}
-	if (c->stc >= c->stackSize) {
-		//TODO error check
-		//error
-	}
 }
 
 void popstk(cpu * c) {
@@ -267,8 +269,7 @@ void popstk(cpu * c) {
 		c->stc -= MemJmp;
 	}
 	else {
-		//TODO error check
-		//error tried poping stack when there was nothing to pop.
+		EHC::GetInstance()->AddMessage(ErrorLevel::E_FATAL, ErrorFrom::EF_VM, "The Compiler has outputted code that is trying to pop the stack more then it can.");
 	}
 }
 
