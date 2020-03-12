@@ -4,30 +4,151 @@ A basic list of some things that need to be done.
 
 ## Compiler
 
-1. Write the rest of the compiler. Must compile everything in "Documents/Examples".
-2. Math order of operations.
-3. Strings. (This may need some memory management stuff.)
-4. Function calls.
-5. Function variables.
-6. Pointers.
-7. Add things like (new/malloc/delete/free)
-8. Let the program pick what memory a var points at.
-9. Inline ASM.
-10. Multiable files in a program.
-11. Maybe some other stuff when I get here.
+Things that the compiler needs to write a full program.
+
+- [ ] Verion X.X complete. Must compile everything in "Documents/Examples".
+  - [ ] Math
+    - [ ] Plus
+    - [ ] Minus
+    - [ ] Times
+    - [ ] Divide
+    - [ ] Order of operations.
+  - [ ] Standard libary.
+    - [ ] Memory
+      - [ ] new/malloc
+      - [ ] delete/free
+    - [ ] Containers
+      - [ ] Array
+      - [ ] Vector
+      - [ ] Map/Hash map
+    - [ ] Regx
+  - [ ] Function calls
+    - [ ] Pass function params
+  - [ ] Multiable files in a program.
+  - [ ] Veriable sizes
+    - [ ] 1 byte (char)
+    - [ ] 4 bytes (int)
+    - [ ] 8 bytes (int64)
+    - [ ] 4 bytes (float)
+    - [ ] 8 bytes (double)
+  - [ ] Use VM stack space.
+  - [ ] Language
+    - [ ] Loops
+      - [ ] For
+      - [ ] For each
+      - [ ] While
+    - [ ] Functions
+      - [ ] Params
+      - [ ] Function pointer.
+      - [ ] Lambdas
+    - [ ] Structures
+      - [ ] Inheritance
+      - [ ] Mutaions
+    - [ ] Pointers
+    - [ ] Veriable types
+      - [ ] Int
+      - [ ] Char
+      - [ ] Strings (needs pointers)
+      - [ ] Float
+      - [ ] Double
+    - [ ] Local scope
+    - [ ] Virtual structures
+    - [ ] Templates (This is a big maybe!)
+    - [ ] Inline ASM
+  - [ ] Command line arguments
+    - [ ] Out put file name.
+    - [ ] Compile as program or library
+  - [ ] Deal with endianness
+  - [ ] Maybe some other stuff when I get here.
+
+## VM Core
+
+Things that need to be done for the core of the VM
+
+### Core
+  - [ ] Deal with endianness
+
+### OP codes
+
+OP codes that should be added.
+
+  - [ ] Shift left
+  - [ ] Shift right
+  - [ ] Give Memory
+  - [ ] Free Memory
+  - [ ] Keyboard/Mouse input
 
 ## Virtual Machine
+  - [ ] Seperate the virtual CPU out of VM
+  - [ ] Display
+    - [ ] Terminal display
+      - [ ] Colour
+        - [ ] Forground
+        - [ ] Background
+      - [ ] Position (Don/t think this is needed)
+    - [ ] SDL2 virtual terminal
+      - [ ] Text display
+      - [ ] Different fonts
+      - [ ] Colour
+        - [ ] Forground
+        - [ ] Background
+      - [ ] Resizable window.
+  - [ ] Harddrive
+    - [ ] Working dir.
+    - [ ] System files and folders
+  - [ ] Network
+    - [ ] TCP
+    - [ ] UDP
+  - [ ] Command line arguments
+    - [ ] Terminal size
+    - [ ] Useable ram
+    - [ ] Number of cpu cores to use (each one is a thread and share ram)
+    - [ ] Use text or SDL2 for display
 
-1. Add some more OP codes. i.e. shifting left. (based of x86 ASM)
-2. Terminal display access.
-3. Hard drive acess.
-4. Network access.
-5. Graphics access (OpenGL?)
+## Miscellaneous
 
-## Both
-
-1. Documentation of the VM and compiler design.
-2. Comment code for doxygen generation. (This will for ever be ongoing.)
+ - [ ] Write lanauge standard
+   - [ ] Loops
+     - [ ] For
+     - [ ] For each
+     - [ ] While
+   - [ ] Functions
+     - [ ] Params
+     - [ ] Function pointer.
+     - [ ] Lambdas
+   - [ ] Structures
+     - [ ] Inheritance
+     - [ ] Mutaions
+   - [ ] Pointers
+   - [ ] Veriable types
+     - [ ] Int
+     - [ ] Char
+     - [ ] Strings (needs pointers)
+     - [ ] Float
+     - [ ] Double
+   - [ ] Local scope
+   - [ ] Virtual structures
+   - [ ] Templates (This is a big maybe!)
+   - [ ] Inline ASM
+ - [ ] Documentation of design
+   - [ ] VM
+     - [ ] CPU
+     - [ ] Display
+       - [ ] Terminal
+         - [ ] Colours
+       - [ ] SDL2
+     - [ ] OP codes
+     - [ ] Input
+     - [ ] Network
+     - [ ] Harddrive
+   - [ ] Compiler
+     - [ ] How a file is parsed
+     - [ ] How the AST is traversed.
+     - [ ] How the AST is converted into OP codes
+   - [ ] File formats.
+     - [ ] Compiled program lolc
+     - [ ] Compiled library ????
+ - [ ] Comment code for doxygen generation. (This will for ever be ongoing.)
 
 ## Pipe dreams
 
