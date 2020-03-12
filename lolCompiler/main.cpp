@@ -36,6 +36,7 @@ int main(int argc, char** argv) {
 #endif
 #elif __linux__
 	std::string fileName = "../../Documents/Examples/test2.lol";
+	//std::string fileName = "Documents/Examples/test2.lol";
 #endif
 
 	std::ifstream file(fileName);
@@ -47,6 +48,9 @@ int main(int argc, char** argv) {
 		while (std::getline(file, tmpLine)) {
 			test.push_back(tmpLine);
 		}
+	}
+	else {
+		std::cout << "Failed to load file: " << fileName << std::endl;
 	}
 
 	std::cout << "Generating Tokens!\n";
@@ -79,8 +83,23 @@ int main(int argc, char** argv) {
 	ASTNode * root = ast.GetRoot();
 	root->PrintNodes();
 	std::cout << "Writing binary file!\n";
-	//std::ofstream ofile("../Documents/Examples/test1.lolc");
+#if defined(_WIN32) || defined(__CYGWIN__)
+#ifdef __CYGWIN__
+	std::ofstream ofile("../../Documents/Examples/test2.lolc");
+#else
 	std::ofstream ofile("../Documents/Examples/test2.lolc");
+#endif
+#elif __linux__
+	std::ofstream ofile("../../Documents/Examples/test2.lolc");
+#endif
+	//std::ofstream ofile;
+	//ofile.open("Documents/Examples/test2.lolc");
+
+	if(!ofile.is_open()) {
+		std::cout << "Failed to open output file\n";
+		return 0;
+	}
+
 	/*
 	if (ofile.is_open()) {
 		//WriteByte(ofile, 't');
