@@ -6,7 +6,7 @@
 class ASTNode;
 
 //skip white space.
-inline void SkipWhiteSpace(size_t * i, const std::vector<Token> &toks) {
+inline void SkipWhiteSpace(unsigned int * i, const std::vector<Token> &toks) {
 	while (toks[*i].GetType() == TokenType::WHITE_SPACE) {
 		*i += 1;
 	}

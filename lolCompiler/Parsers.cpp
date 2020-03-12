@@ -5,7 +5,7 @@
 
 
 bool ShouldParseFunc(const std::vector<Token> &toks) {
-		for (size_t i = 0; i < toks.size(); i++) {
+		for (unsigned int i = 0; i < toks.size(); i++) {
 			if (toks[i].GetType() == TokenType::KEYWORD) {
 				i++;
 				SkipWhiteSpace(&i, toks);
@@ -56,14 +56,14 @@ bool ParseFuntions(std::vector<Token> * toks, ASTNode * ast) {
 			funcIndentNode->SetType(ASTNodeType::AST_Function_Identifier);
 			newNode->AddNode(funcIndentNode);
 
-			for (size_t i = 0; i < toks->size(); i++) {
+			for (unsigned int i = 0; i < toks->size(); i++) {
 				if (toks->operator[](i).GetType() == TokenType::KEYWORD) {
 					//We will only store the start token.
 					//TODO Nodes can have more then one token pls
 					newNode->SetToken(toks->operator[](i));
 					std::string lit;
 
-					for (size_t t = i + 1; toks->operator[](t).GetType() != TokenType::LEFT_BRACET; t++) {
+					for (unsigned int t = i + 1; toks->operator[](t).GetType() != TokenType::LEFT_BRACET; t++) {
 						SkipWhiteSpace(&t, *toks);
 						lit += toks->operator[](t).GetToken();
 
@@ -126,9 +126,9 @@ bool ShouldParseVar(const std::vector<Token> &toks) {
 	if (toks.size() == 0) {
 		return false;
 	}
-	size_t skip = 0;
+	unsigned int skip = 0;
 	SkipWhiteSpace(&skip, toks);
-	for (size_t i = skip; i < toks.size(); i++) {
+	for (unsigned int i = skip; i < toks.size(); i++) {
 		if (toks[i].GetType() == TokenType::KEYWORD) {
 			i++;
 			SkipWhiteSpace(&i, toks);
@@ -156,9 +156,9 @@ bool ShouldParseVar(const std::vector<Token> &toks) {
 extern bool ParseVarible(std::vector<Token> * toks, ASTNode * ast) {
 
 	if (ShouldParseVar(*toks)) {
-		size_t skip = 0;
+		unsigned int skip = 0;
 		SkipWhiteSpace(&skip, *toks);
-		for (size_t i = skip; i < toks->size(); i++) {
+		for (unsigned int i = skip; i < toks->size(); i++) {
 			if ((*toks)[i].GetType() == TokenType::KEYWORD) {
 
 				ASTNode* varDecl = new ASTNode;
@@ -182,7 +182,7 @@ extern bool ParseVarible(std::vector<Token> * toks, ASTNode * ast) {
 					if ((*toks)[i].GetType() == TokenType::SEMI_COLON || (*toks)[i].GetType() == TokenType::ASSIGN) {
 						if ((*toks)[i].GetType() == TokenType::SEMI_COLON) {
 							std::string lit;
-							size_t start = skip + 1;
+							unsigned int start = skip + 1;
 							SkipWhiteSpace(&start, *toks);
 							for (size_t r = start; r <= i; r++) {
 								lit += toks->operator[](r).GetToken();
@@ -281,7 +281,7 @@ extern bool ShouldParseReturn(const std::vector<Token> &toks) {
 		return false;
 	}
 
-	size_t skip = 0;
+	unsigned int skip = 0;
 	SkipWhiteSpace(&skip, toks);
 
 	if (toks[skip].GetType() == TokenType::KEYWORD) {
@@ -299,7 +299,7 @@ extern bool ShouldParseReturn(const std::vector<Token> &toks) {
 
 extern bool ParseReturn(std::vector<Token> * toks, ASTNode * ast) {
 	if (ShouldParseReturn(*toks)) {
-		size_t skip = 0;
+		unsigned int skip = 0;
 		SkipWhiteSpace(&skip, *toks);
 		std::string lit;
 		//Get the literal;
