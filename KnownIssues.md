@@ -4,7 +4,6 @@ Just some issues that I know about and will be working towards fixing.
 
 ## Linux
 
-- [ ] Segmentation Fault when generating AST. 
 
 ## Windows
 
