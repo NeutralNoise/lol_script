@@ -83,7 +83,7 @@ const uint32 offset_table[256] = {
 	/* 5 */   1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, /* 5 */
 	/* 6 */   1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, /* 6 */
 	/* 7 */   1,  1,  1,  1,  1,  3,  7,  6,  1,  1,  1,  1,  1,  1,  1,  1, /* 7 */
-	/* 8 */   1,  1,  1,  1,  1,  3,  6,  7,  6,  9,  2,  6,  1,  1,  1,  1, /* 8 */
+	/* 8 */   1,  1,  1,  1,  1,  3,  6,  7,  6,  9,  6,  6,  1,  1,  1,  1, /* 8 */
 	/* 9 */   1,  1,  1,  1,  1,  2,  6,  1,  1,  1,  1,  1,  1,  1,  1,  1, /* 9 */
 	/* A */   1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, /* A */
 	/* B */   1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, /* B */
@@ -140,5 +140,50 @@ static std::string opCodeToString(const CPU_OP_CODE &op) {
 }
 
 void RunOpCode(cpu * c);
+
+static uint32 OpCodeSize(const CPU_OP_CODE &op) {
+	switch (op) {
+	case CPU_OP_CODE::NO_OP:
+		return 1;
+	case CPU_OP_CODE::JMP_TO_MEM:
+		return 5;
+	case CPU_OP_CODE::JMP_NOT_EQUAL:
+		return 5;
+	case CPU_OP_CODE::ADD_REG_TO_REG:
+		return 1;
+	case CPU_OP_CODE::SUB_REG_TO_REG:
+		return 1;
+	case CPU_OP_CODE::MUL_REG_TO_REG:
+		return 1;
+	case CPU_OP_CODE::CMP_REG_TO_REG:
+		return 3;
+	case CPU_OP_CODE::CMP_REG_TO_MEM:
+		return 7;
+	case CPU_OP_CODE::CMP_REG_TO_CON:
+		return 6;
+	case CPU_OP_CODE::MOVE_REG_TO_REG:
+		return 3;
+	case CPU_OP_CODE::MOVE_REG_TO_MEM:
+		return 6;
+	case CPU_OP_CODE::MOVE_MEM_TO_REG:
+		return 7;
+	case CPU_OP_CODE::MOVE_CON_TO_REG:
+		return 6;
+	case CPU_OP_CODE::MOVE_CON_TO_MEM:
+		return 9;
+	case CPU_OP_CODE::PUSH_REG_TO_STACK:
+		return 2;
+	case CPU_OP_CODE::PUSH_MEM_TO_STACK:
+		return 6;
+	case CPU_OP_CODE::POP_TOP_OF_STACK:
+		return 1;
+	case CPU_OP_CODE::HALT_CPU:
+		return 1;
+	default:
+		return -1;
+	}
+	//We shouldn't get here.
+	return -1;
+}
 
 #endif //OPT_CODDES_H
