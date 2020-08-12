@@ -21,6 +21,8 @@
 135 : movmtr : <mem>, <type>, <reg> : If <type> is VAL then the data at address of <mem> is copied to <reg>. If type is PTR the address is copied to <reg>.
 136 : movctr : <reg>, <const> : Copys a constant number into <reg>
 137 : movctm : <mem>, <const> : Copys a constant number into <mem>
+138 : movrts : <reg> , <mem> : Copys given reg to given stack address.
+138 : movstr : <mem>, <reg> : Copys contents of given stack address to given reg.
 
 149 : pshreg : <reg> : Copys whats in the given reg to the stack.
 150 : pshmem : <type>, <mem> : Copys the memory of a given type to the stack.
