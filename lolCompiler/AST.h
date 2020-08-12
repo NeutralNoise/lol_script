@@ -4,6 +4,7 @@
 #include <assert.h>
 #include "ASTNode.h"
 #include "../Common/cpuEnums.h"
+#include "../Common/ByteWriter.h"
 #include "ASTWriter.h"
 
 //TODO This shits fucke. It needs to be removed or moved else where.
@@ -55,31 +56,6 @@ inline uint32_t ntohl(uint32_t v) {
 #else
 #include <arpa/inet.h>
 #endif
-
-
-//TODO write own file for these.
-
-inline void WriteByte(std::ofstream &stream, unsigned char byte) {
-	stream << byte;
-}
-
-inline void WriteBytes(std::ofstream &stream, unsigned char *byte, const size_t &size) {
-	stream.write((char*)byte, size);
-}
-
-inline void ReadByte(std::ifstream &stream, unsigned char *byte) {
-	stream >> *byte;
-}
-
-inline void ReadBytes(std::ifstream &stream, unsigned char *byte, const size_t &size) {
-	char *c = new char[size]();
-	memset(c, '\0', size);
-	stream.read(c, size);
-	for (size_t i = 0; i < size; i++) {
-		*(byte + i) = (unsigned char)*(c + i);
-	}
-	
-}
 
 
 /**
