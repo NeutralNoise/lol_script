@@ -2,7 +2,7 @@
 #define BYTE_SWAP_H_INCLUDED
 #include "type_def.h"
 
-//NOTE This code was taken from the IncludeOS prject;
+//NOTE This code was taken from the MUSL libc prject. http://musl.libc.org/
 
 inline uint16 bswap16(uint16 v) {
     return v<<8 | v>>8;
