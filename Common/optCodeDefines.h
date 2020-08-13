@@ -30,9 +30,9 @@
 
 */
 
-#define ADD_OFFSET 1
-#define SUB_OFFSET 1
-#define MUL_OFFSET 1
+#define ADD_OFFSET 3
+#define SUB_OFFSET 3
+#define MUL_OFFSET 3
 
 /*
 

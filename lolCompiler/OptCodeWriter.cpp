@@ -15,9 +15,9 @@ Move Opt Codes
 
 */
 
-void Writer::WriteMovrtr(std::ofstream &stream, const char &reg1, const char &reg2) {
+void Writer::WriteMovrtr(std::ofstream &stream, const char &srcReg, const char &dstReg) {
 
-	unsigned char op[MOV_REG_TO_REG_OFFSET]{CPU_OP_CODE::MOVE_REG_TO_REG, reg1, reg2};
+	unsigned char op[MOV_REG_TO_REG_OFFSET]{CPU_OP_CODE::MOVE_REG_TO_REG, srcReg, dstReg};
 	WriteBytes(stream, &op[0], MOV_REG_TO_REG_OFFSET);
 }
 
@@ -133,19 +133,19 @@ Math otp codes
 */
 
 void Writer::WriteAdd(std::ofstream &stream, const char &reg1, const char &reg2) {
-	unsigned char op[ADD_OFFSET]{CPU_OP_CODE::ADD_REG_TO_REG};
+	unsigned char op[ADD_OFFSET]{CPU_OP_CODE::ADD_REG_TO_REG, reg1, reg2};
 	//TODO use regs for the math.
 	WriteBytes(stream, &op[0], ADD_OFFSET);
 }
 
 void Writer::WriteSub(std::ofstream &stream, const char &reg1, const char &reg2) {
-	unsigned char op[SUB_OFFSET]{CPU_OP_CODE::SUB_REG_TO_REG};
+	unsigned char op[SUB_OFFSET]{CPU_OP_CODE::SUB_REG_TO_REG, reg1, reg2};
 	//TODO use regs for the math.
 	WriteBytes(stream, &op[0], SUB_OFFSET);
 }
 
 void Writer::WriteMul(std::ofstream &stream, const char &reg1, const char &reg2) {
-	unsigned char op[MUL_OFFSET]{CPU_OP_CODE::MUL_REG_TO_REG};
+	unsigned char op[MUL_OFFSET]{CPU_OP_CODE::MUL_REG_TO_REG, reg1, reg2};
 	//TODO use regs for the math.
 	WriteBytes(stream, &op[0], MUL_OFFSET);
 }

@@ -18,12 +18,15 @@ void fetch(cpu * c) {
 		break;
 	case CPU_OP_CODE::ADD_REG_TO_REG:
 		c->instruction.opCode = CPU_OP_CODE::ADD_REG_TO_REG;
+		fetchAdd(c);
 		break;
 	case CPU_OP_CODE::SUB_REG_TO_REG:
 		c->instruction.opCode = CPU_OP_CODE::SUB_REG_TO_REG;
+		fetchSub(c);
 		break;
 	case CPU_OP_CODE::MUL_REG_TO_REG:
 		c->instruction.opCode = CPU_OP_CODE::MUL_REG_TO_REG;
+		fetchMul(c);
 		break;
 	case CPU_OP_CODE::CMP_REG_TO_REG:
 		c->instruction.opCode = CPU_OP_CODE::CMP_REG_TO_REG;

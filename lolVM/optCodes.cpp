@@ -275,13 +275,103 @@ void popstk(cpu * c) {
 
 //MATH STUFF!
 void add(cpu * c) {
-	c->ra += c->rb;
+	int * op1;
+	int * op2;
+
+	if (c->instruction.first == CPU_REG_NUM::RA_NUM) {
+		op1 = &(c->ra);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RB_NUM) {
+		op1 = &(c->rb);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RC_NUM) {
+		op1 = &(c->rc);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RD_NUM) {
+		op1 = &(c->rd);
+	}
+
+	if (c->instruction.second == CPU_REG_NUM::RA_NUM) {
+		op2 = &(c->ra);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RB_NUM) {
+		op2 = &(c->rb);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RC_NUM) {
+		op2 = &(c->rc);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RD_NUM) {
+		op2 = &(c->rd);
+	}
+
+	*op1 += *op2;
+
 }
+
 void sub(cpu * c) {
-	c->ra -= c->rb;
+	int * op1;
+	int * op2;
+
+	if (c->instruction.first == CPU_REG_NUM::RA_NUM) {
+		op1 = &(c->ra);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RB_NUM) {
+		op1 = &(c->rb);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RC_NUM) {
+		op1 = &(c->rc);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RD_NUM) {
+		op1 = &(c->rd);
+	}
+
+	if (c->instruction.second == CPU_REG_NUM::RA_NUM) {
+		op2 = &(c->ra);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RB_NUM) {
+		op2 = &(c->rb);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RC_NUM) {
+		op2 = &(c->rc);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RD_NUM) {
+		op2 = &(c->rd);
+	}
+
+	*op1 -= *op2;
 }
+
 void mul(cpu * c) {
-	c->ra *= c->rb;
+	int * op1;
+	int * op2;
+
+	if (c->instruction.first == CPU_REG_NUM::RA_NUM) {
+		op1 = &(c->ra);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RB_NUM) {
+		op1 = &(c->rb);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RC_NUM) {
+		op1 = &(c->rc);
+	}
+	else if (c->instruction.first == CPU_REG_NUM::RD_NUM) {
+		op1 = &(c->rd);
+	}
+
+	if (c->instruction.second == CPU_REG_NUM::RA_NUM) {
+		op2 = &(c->ra);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RB_NUM) {
+		op2 = &(c->rb);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RC_NUM) {
+		op2 = &(c->rc);
+	}
+	else if (c->instruction.second == CPU_REG_NUM::RD_NUM) {
+		op2 = &(c->rd);
+	}
+
+	*op1 *= *op2;
 }
 
 void jmp(cpu * c) {

@@ -19,11 +19,11 @@ public:
 	 * \brief Writes a mov reg to reg VM command
 	 * 
 	 * \param stream Stream to write the command too.
-	 * \param reg1 Src reg.
-	 * \param reg2 Dst reg.
+	 * \param srcReg Src reg.
+	 * \param dstReg Dst reg.
 	*/
 
-	static void WriteMovrtr(std::ofstream &stream, const char &reg1, const char &reg2);
+	static void WriteMovrtr(std::ofstream &stream, const char &srcReg, const char &dstReg);
 
 	/**
 	 * \brief Write a command to write data from a reg to memory.
