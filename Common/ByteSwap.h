@@ -25,13 +25,13 @@ inline uint32 htonl(uint32 v) {
 inline uint16 ntohs(uint16 v)
 {
 	union { int i; char c; } u = { 1 };
-	return u.c ? bswap_16(v) : v;
+	return u.c ? bswap16(v) : v;
 }
 
 inline uint32 ntohl(uint32 v)
 {
 	union { int i; char c; } u = { 1 };
-	return u.c ? bswap_32(v) : v;
+	return u.c ? bswap32(v) : v;
 }
 
 #endif //BYTE_SWAP_H_INCLUDED
